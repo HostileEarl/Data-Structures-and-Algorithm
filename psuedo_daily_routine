@@ -1,0 +1,51 @@
+BEGIN JoggingRoutine
+
+    
+    PRINT "Preparing jogging gear..."
+    DECLARE shoes AS STRING
+    DECLARE clothing AS STRING
+    DECLARE accessories AS LIST
+    SET shoes = GetRunningShoes()
+    SET clothing = GetRunningClothing()
+    SET accessories = GetAccessories() 
+
+    IF shoes IS EMPTY OR clothing IS EMPTY THEN
+        PRINT "Missing shoes or clothing. Cannot proceed."
+        RETURN "Exiting jogging routine."
+    ENDIF
+
+    
+    PRINT "Planning jogging route..."
+    DECLARE route AS STRING
+    route = ChooseJoggingRoute() 
+
+    IF route IS EMPTY THEN
+        PRINT "No route selected. Please choose a route."
+        RETURN "Exiting jogging routine."
+    ENDIF
+
+    
+    PRINT "Warming up..."
+    PerformWarmUp() 
+    
+    PRINT "Starting to jog..."
+    DECLARE startTime AS TIME
+    startTime = GetCurrentTime()
+    Jog(route) 
+
+   
+    PRINT "Cooling down..."
+    PerformCoolDown() 
+
+    
+    PRINT "Tracking jogging progress..."
+    DECLARE endTime AS TIME
+    endTime = GetCurrentTime()
+    DECLARE duration AS TIME
+    duration = CalculateDuration(startTime, endTime) 
+
+    LogJoggingData(route, duration) 
+
+    PRINT "Jogging routine completed successfully!"
+
+END JoggingRoutine
